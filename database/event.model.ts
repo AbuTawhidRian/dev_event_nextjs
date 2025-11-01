@@ -14,6 +14,7 @@ export interface IEvent extends Document {
   capacity?: number;
   availableSeats?: number;
   organizer?: string;
+  tags: string[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -77,6 +78,7 @@ const EventSchema = new Schema<IEvent>(
       type: String,
       trim: true,
     },
+    tags: { type: [String], default: [] },
   },
   {
     timestamps: true,
@@ -84,7 +86,6 @@ const EventSchema = new Schema<IEvent>(
 );
 
 // Create indexes for better query performance
-EventSchema.index({ slug: 1 });
 EventSchema.index({ date: 1 });
 EventSchema.index({ category: 1 });
 
