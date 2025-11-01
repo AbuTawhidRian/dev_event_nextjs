@@ -6,7 +6,7 @@ interface Props {
   image: string;
   slug: string;
   location: string;
-  date: string;
+  date: Date;
   time: string;
 }
 
@@ -14,7 +14,7 @@ const EventCard = ({ title, image, slug, location, date, time }: Props) => {
   return (
     <Link href={`/events/${slug}`} id="event-card">
       <Image
-        src={image}
+        src={image || '/images/placeholder,jpg'}
         alt={title}
         width={410}
         height={300}
@@ -28,7 +28,7 @@ const EventCard = ({ title, image, slug, location, date, time }: Props) => {
       <div className="datetime">
         <div>
           <Image src="/icons/calendar.svg" alt="date" width={14} height={14} />
-          <p>{date}</p>
+          <p>{date ? date.toLocaleDateString() : 'No date'}</p>
         </div>
         <div>
           <Image src="/icons/clock.svg" alt="time" width={14} height={14} />
